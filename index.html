@@ -1,245 +1,80 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Comprovante - Ghimel Guedes Cândido</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comprovante de Meia-Entrada</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #2a0a3d;
+            color: white;
+            padding: 15px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            padding: 20px;
+        }
+        h1 {
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        .info {
+            margin: 15px 0;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+        }
+        .label {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+        .value {
+            font-weight: bold;
+            font-size: 1rem;
+        }
 
-  <!-- Fonte (opcional) -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg: #2b0a37; /* fundo roxo escuro */
-      --accent: #9d35b0; /* roxo mais claro */
-      --white: #ffffff;
-      --muted: #d9d3e6;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-      background: var(--bg);
-      color:var(--white);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      display:flex;
-      align-items:flex-start;
-      justify-content:center;
-      padding:48px 16px;
-    }
-
-    .card{
-      width:100%;
-      max-width:720px;
-      min-height:520px;
-      background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(0,0,0,0.02));
-      border-radius:10px;
-      padding:36px;
-      box-shadow: 0 8px 30px rgba(0,0,0,0.45);
-      position:relative;
-      overflow:hidden;
-    }
-
-    /* topo - logo estilizado */
-    .logo{
-      display:flex;
-      align-items:flex-end;
-      gap:12px;
-      margin-bottom:26px;
-    }
-    .logo .word1{
-      font-weight:700;
-      font-size:42px;
-      letter-spacing:1px;
-      color:var(--muted);
-      text-transform:uppercase;
-    }
-    .logo .word2{
-      font-weight:800;
-      font-size:42px;
-      color:var(--accent);
-      text-transform:uppercase;
-      -webkit-text-stroke: 0.6px rgba(0,0,0,0.2);
-    }
-    .logo .sub{
-      font-size:18px;
-      margin-left:6px;
-      color:rgba(255,255,255,0.85);
-      transform:translateY(4px);
-      font-weight:600;
-      letter-spacing:1px;
-    }
-
-    /* conteúdo principal */
-    .content{
-      display:flex;
-      gap:32px;
-      align-items:flex-start;
-    }
-
-    .left{
-      flex:1.2;
-      padding-top:20px;
-    }
-
-    .title{
-      font-size:56px;
-      line-height:1.02;
-      margin:0 0 18px 0;
-      font-weight:300;
-      color:var(--white);
-    }
-
-    .details{
-      background: rgba(255,255,255,0.03);
-      border-radius:8px;
-      padding:22px;
-      max-width:480px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.02);
-    }
-    .row{
-      display:flex;
-      justify-content:space-between;
-      gap:12px;
-      align-items:center;
-      padding:8px 0;
-      border-bottom:1px solid rgba(255,255,255,0.03);
-    }
-    .row:last-child{ border-bottom: none; }
-    .label{
-      font-size:13px;
-      color:rgba(255,255,255,0.6);
-      width:160px;
-      font-weight:600;
-      text-transform:uppercase;
-      letter-spacing:0.6px;
-    }
-    .value{
-      flex:1;
-      font-size:18px;
-      color:var(--white);
-      font-weight:600;
-    }
-
-    /* bloco direito para validade / assinatura */
-    .right{
-      flex:0.6;
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      justify-content:flex-start;
-      gap:18px;
-      padding-top:18px;
-    }
-    .valid{
-      background: linear-gradient(180deg, rgba(157,53,176,0.14), rgba(157,53,176,0.06));
-      padding:18px;
-      border-radius:10px;
-      text-align:center;
-      min-width:180px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
-    }
-    .valid .ttl{ font-size:12px; color:rgba(255,255,255,0.7); font-weight:600; letter-spacing:0.6px; text-transform:uppercase; }
-    .valid .when{ font-size:20px; font-weight:700; margin-top:8px; color:var(--white); }
-
-    .issued{
-      font-size:12px;
-      color:rgba(255,255,255,0.6);
-      text-align:right;
-    }
-
-    /* assinatura */
-    .signature{
-      margin-top:22px;
-      width:100%;
-      display:flex;
-      justify-content:flex-end;
-      align-items:center;
-      gap:12px;
-    }
-    .sig-line{
-      width:220px;
-      border-top:2px dashed rgba(255,255,255,0.12);
-      height:18px;
-    }
-    .sig-label{ font-size:12px; color:rgba(255,255,255,0.6); }
-
-    /* responsivo */
-    @media (max-width:720px){
-      .content{ flex-direction:column; }
-      .right{ align-items:flex-start; }
-      .signature{ justify-content:flex-start; }
-      .title{ font-size:44px; }
-    }
-  </style>
+        /* Responsividade */
+        @media (min-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            .value {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="card" role="main">
-    <div class="logo" aria-hidden="true">
-      <div style="display:flex;flex-direction:column;">
-        <span class="word1">Clube</span>
-        <span class="sub">ESTUDANTE</span>
-      </div>
-      <div style="margin-left:8px;">
-        <span class="word2">DO</span>
-      </div>
-    </div>
-
-    <div class="content">
-      <div class="left">
-        <h1 class="title">Comprovante de Meia-Entrada</h1>
-
-        <div class="details" aria-labelledby="dados-title">
-          <div class="row">
-            <div class="label">Nome</div>
+    <div class="container">
+        <h1>Comprovante de Meia-Entrada</h1>
+        <div class="info">
+            <div class="label">NOME</div>
             <div class="value">Ghimel Guedes Cândido</div>
-          </div>
-
-          <div class="row">
-            <div class="label">Instituição</div>
+        </div>
+        <div class="info">
+            <div class="label">INSTITUIÇÃO</div>
             <div class="value">Centro Universitário Farias Brito</div>
-          </div>
-
-          <div class="row">
-            <div class="label">Curso</div>
+        </div>
+        <div class="info">
+            <div class="label">CURSO</div>
             <div class="value">Ciência da Computação</div>
-          </div>
-
-          <div class="row">
-            <div class="label">Tipo de curso</div>
+        </div>
+        <div class="info">
+            <div class="label">TIPO DE CURSO</div>
             <div class="value">Graduação</div>
-          </div>
-
-          <div class="row">
-            <div class="label">Matrícula</div>
-            <div class="value">000000</div>
-          </div>
-
-          <div class="row">
-            <div class="label">Observação</div>
-            <div class="value" style="font-size:13px;color:rgba(255,255,255,0.85);font-weight:500">
-              Válido mediante apresentação deste comprovante e documento oficial com foto.
-            </div>
-          </div>
         </div>
-      </div>
-
-      <div class="right" aria-hidden="true">
-        <div class="valid" role="status" aria-label="Validade">
-          <div class="ttl">Validade até</div>
-          <div class="when">31 / Março / 2028</div>
+        <div class="info">
+            <div class="label">MATRÍCULA</div>
+            <div class="value">2128470</div>
         </div>
-
-        <div class="issued">Emitido em: 09/08/2025</div>
-
-        <div class="signature" aria-hidden="true">
-          <div class="sig-line"></div>
-          <div class="sig-label">Assinatura e carimbo da instituição</div>
+        <div class="info">
+            <div class="label">OBSERVAÇÃO</div>
+            <div class="value">Válido mediante apresentação deste comprovante e documento oficial com foto.</div>
         </div>
-      </div>
     </div>
-  </div>
 </body>
 </html>
